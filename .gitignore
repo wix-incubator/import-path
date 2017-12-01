@@ -1,0 +1,8 @@
+dist
+node_modules
+*npm-debug.log
+target
+maven
+package-lock.json
+.vscode
+.yo-rc.json

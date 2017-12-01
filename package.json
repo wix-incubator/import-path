@@ -1,0 +1,76 @@
+{
+  "private": false,
+  "name": "import-path",
+  "version": "0.0.1",
+  "description": "This package will allow users to require your package without writing dist/src",
+  "author": {
+    "name": "Lior Belinsky",
+    "email": "liorbe@wix.com"
+  },
+  "bugs": {
+    "url": "https://github.com/wix/import-path/issues"
+  },
+  "homepage": "https://github.com/wix/import-path#readme",
+  "main": "import-path.js",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/wix/import-path.git"
+  },
+  "license": "MIT",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "scripts": {
+    "start": "yoshi start",
+    "build": ":",
+    "precommit": "yoshi lint",
+    "pretest": "yoshi build",
+    "test": "yoshi test",
+    "posttest": "yoshi lint",
+    "release": "yoshi release"
+  },
+  "bin": {
+    "import-path": "./import-path.js"
+  },
+  "dependencies": {
+    "babel-runtime": "^6.22.0"
+  },
+  "devDependencies": {
+    "babel-plugin-transform-runtime": "^6.22.0",
+    "babel-preset-env": "^1.5.2",
+    "babel-preset-stage-3": "^6.5.0",
+    "chai": "^3.5.0",
+    "husky": "^0.13.4",
+    "yoshi": "latest"
+  },
+  "babel": {
+    "presets": [
+      "stage-3"
+    ],
+    "plugins": [
+      "transform-runtime"
+    ],
+    "env": {
+      "test": {
+        "presets": [
+          [
+            "env",
+            {
+              "targets": {
+                "node": "current"
+              }
+            }
+          ]
+        ]
+      },
+      "development": {
+        "presets": [
+          "env"
+        ]
+      }
+    }
+  },
+  "eslintConfig": {
+    "extends": "wix/esnext"
+  }
+}
