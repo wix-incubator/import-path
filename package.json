@@ -16,6 +16,10 @@
     "type": "git",
     "url": "git+ssh://git@github.com/wix/import-path.git"
   },
+  "files": [
+    "dist",
+    "src"
+  ],
   "license": "MIT",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
