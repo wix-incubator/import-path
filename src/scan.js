@@ -1,11 +1,8 @@
 const path = require('path');
 const fs = require('fs');
 
-module.exports = function (options) {
-  const packageName = options.package;
-  const pathName = options.path;
-
-  const componentsPath = path.resolve(__dirname, '../..', packageName, 'dist', pathName);
+module.exports = function (pathName) {
+  const componentsPath = path.resolve('dist', pathName);
 
   if (fs.existsSync(componentsPath)) {
     fs
@@ -19,10 +16,9 @@ module.exports = function (options) {
 
       .map(([name, absolutePath]) => {
         const componentPath = path.relative('./', absolutePath);
-        const desiredPath = path.resolve(__dirname, '../../', packageName);
 
         return [
-          `${desiredPath}/${name}.js`,
+          `./${name}.js`,
           `module.exports = require('./${componentPath}');\n`
         ];
       })
