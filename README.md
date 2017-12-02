@@ -49,6 +49,14 @@ On every build we scan for all the files under 'my-package/dist/src/importantFun
 module.exports = require('./dist/src/importantFunction');
 ```
 
+There is no need to push them to Github, so add this to the `.gitignore` file:
+
+```
+/*.js
+!wallaby.js
+!protractor.conf.js
+```
+
 The last thing you need to do is to publish all of the new generated files:
 
 ```javascript
