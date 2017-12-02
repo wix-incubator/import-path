@@ -10,6 +10,15 @@
   "bugs": {
     "url": "https://github.com/wix/import-path/issues"
   },
+  "keywords": [
+    "node",
+    "cli",
+    "javascript",
+    "import",
+    "require",
+    "export",
+    "path"
+  ],
   "homepage": "https://github.com/wix/import-path#readme",
   "main": "import-path.js",
   "repository": {
