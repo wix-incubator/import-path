@@ -27,11 +27,13 @@ Add the following to your build command in the `package.json`:
 
 ```javasript
  "scripts": {
-    "build": "yoshi build && import-path --path <desired-path>",
+    "build": "haste build && import-path --path <desired-path>",
     ...
 ```
+Note that [haste](https://github.com/wix/haste) is the build tool which is being used in this example, but ofcourse it is not mandatory.
 
-`<desiredPath>` is the path you wish to change the require from. For example,
+`<desiredPath>` is the path you wish to change the require from. For example:
+
 ```
 import-path --path src/importantFunction
 ```
