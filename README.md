@@ -3,7 +3,7 @@
 ## Intro
 This package helps creating a nicer API for your require paths.
 
-If for example your `dist` folder is being published in your packge, usually users will try to require by using the full path:
+If for example your `dist` folder is being published in your packge, usually users will try to require it by using the full path:
 
 ```javascript
 import {importantFunction} from 'my-package/dist/src/importantFunction';
@@ -43,15 +43,17 @@ import {importantFunction} from 'my-package/importantFunction';
 
 On every build we scan for all the files under 'my-package/dist/src/importantFunction' which contain `index.js` file inside of them, and for each file we create the following file under the root dir:
 
-// importantFunction.js
 ```js
+// importantFunction.js
+
 module.exports = require('./dist/src/importantFunction');
 ```
 
 The last thing you need to do is to publish all of the new generated files:
 
-// package.json
 ```javascript
+// package.json
+
 "files": [
     "dist",
     "*.js",
