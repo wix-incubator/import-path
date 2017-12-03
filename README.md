@@ -59,6 +59,8 @@ There is no need to push them to Github, so add this to the `.gitignore` file:
 !protractor.conf.js
 ```
 
+If you have more `*.js` files under the root dir that you don't want to ignore, add them with prefix `!`.
+
 The last thing you need to do is to publish all of the new generated files:
 
 ```javascript
