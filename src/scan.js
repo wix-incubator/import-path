@@ -1,7 +1,7 @@
 const path = require('path');
 const fs = require('fs');
 
-module.exports = function (pathName) {
+module.exports = function (pathName, dts) {
   const componentsPath = path.resolve('dist', pathName);
 
   if (fs.existsSync(componentsPath)) {
@@ -17,13 +17,20 @@ module.exports = function (pathName) {
       .map(([name, absolutePath]) => {
         const componentPath = path.relative('./', absolutePath);
 
-        return [
-          `./${name}.js`,
-          `module.exports = require('./${componentPath}');\n`
+        const files = [
+			{path: `./${name}.js`, source: `module.exports = require('./${componentPath}');\n`},
         ];
+
+        if (dts) {
+          const declarationFile = {path: `./${name}.d.ts`, source: `export * from './${componentPath}';\n`};
+          files.push(declarationFile);
+        }
+
+        return files;
       })
 
-      .map(([path, source]) =>
-        fs.writeFileSync(path, source));
+      .map(files => files.forEach(({path, source}) => {
+        fs.writeFileSync(path, source);
+      }));
   }
 };

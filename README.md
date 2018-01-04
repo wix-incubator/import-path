@@ -43,6 +43,15 @@ Will allow users to do:
 import {importantFunction} from 'my-package/importantFunction';
 ```
 
+Typescript definitions can also be generated using the `--dts` option:
+
+```javasript
+ import-path --path <desired-path> --dts",
+```
+
+This will create a `.d.ts` for every generated `.js` file.
+Note that the .d.ts files only support named exports and do no support `export default...` and `exports = ...`.
+
 On every build we scan for all the files under 'my-package/dist/src/importantFunction' which contain `index.js` file inside of them, and for each file we create the following file under the root dir:
 
 ```js
@@ -55,6 +64,7 @@ There is no need to push them to Github, so add this to the `.gitignore` file:
 
 ```
 /*.js
+/*.d.ts // if you use the dts option
 !wallaby.js
 !protractor.conf.js
 ```
@@ -69,6 +79,7 @@ The last thing you need to do is to publish all of the new generated files:
 "files": [
     "dist",
     "*.js",
+    '*.d.ts', // if you use the dts option
     "!wallaby.js",
     "!protractor.conf.js"
   ],
