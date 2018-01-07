@@ -50,7 +50,7 @@ Typescript definitions can also be generated using the `--dts` option:
 ```
 
 This will create a `.d.ts` for every generated `.js` file.
-Note that the .d.ts files only support named exports and do no support `export default...` and `exports = ...`.
+Note that the .d.ts files only support named exports and do not support `export default...` and `exports = ...`.
 
 On every build we scan for all the files under 'my-package/dist/src/importantFunction' which contain `index.js` file inside of them, and for each file we create the following file under the root dir:
 
