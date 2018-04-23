@@ -18,7 +18,7 @@ module.exports = function (pathName, dts) {
         const componentPath = path.relative('./', absolutePath);
 
         const files = [
-			{path: `./${name}.js`, source: `module.exports = require('./${componentPath}');\n`},
+          {path: `./${name}.js`, source: `module.exports = require('./${componentPath}');\n`},
         ];
 
         if (dts) {
