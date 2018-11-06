@@ -1,15 +1,20 @@
 const path = require('path');
 const fs = require('fs');
 
-//  ./button-next => ./ButtonNext
-const camelize = (str) => {
-  return str.replace(/(?:^\w|[A-Z]|\b\w)/g, function(letter, index) {
-    return index == 0 ? letter.toLowerCase() : letter.toUpperCase();
-  }).replace(/\s+/g, '').replace('-','');
+// ./Button-Next => ./ButtonNext
+const componentNameFormat = (str) => {
+  return str.split('-').map(subStr => upperCaseFirstChar(subStr)).join('')
 }
 
-module.exports = function (pathName, dts, camelizePath = false) {
+// ./button-next => ./Button-next
+const upperCaseFirstChar = (str) => {
+  return str.charAt(0).toUpperCase() + str.slice(1)
+}
+
+module.exports = function (pathName, dts, options) {
   const componentsPath = path.resolve('dist', pathName);
+  const defaultOptions = {componentNameFormat: true}
+  options = Object.assign({}, defaultOptions, options)
 
   if (fs.existsSync(componentsPath)) {
     fs
@@ -23,6 +28,7 @@ module.exports = function (pathName, dts, camelizePath = false) {
 
       .map(([name, absolutePath]) => {
         const componentPath = path.relative('./', absolutePath);
+        name = options.componentNameFormat ? componentNameFormat(name) : name
 
         let files = [
           {path: `./${name}.js`, source: `module.exports = require('./${componentPath}');\n`},
@@ -32,14 +38,7 @@ module.exports = function (pathName, dts, camelizePath = false) {
           const declarationFile = {path: `./${name}.d.ts`, source: `export * from './${componentPath}';\n`};
           files.push(declarationFile);
         };
-
-        if (camelizePath){
-          files = files.map((file) => {
-            file.path = camelize(file.path);
-            return file;
-          });
-        };
-
+        console.log(files)
         return files;
       })
 
