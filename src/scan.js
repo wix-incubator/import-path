@@ -13,7 +13,7 @@ const upperCaseFirstChar = (str) => {
 
 module.exports = function (pathName, dts, options) {
   const componentsPath = path.resolve('dist', pathName);
-  const defaultOptions = {componentNameFormat: true}
+  const defaultOptions = {componentNameFormat: false}
   options = Object.assign({}, defaultOptions, options)
 
   if (fs.existsSync(componentsPath)) {
