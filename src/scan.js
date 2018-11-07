@@ -30,7 +30,7 @@ module.exports = function (pathName, dts, options) {
         const componentPath = path.relative('./', absolutePath);
         name = options.componentNameFormat ? componentNameFormat(name) : name
 
-        let files = [
+        const files = [
           {path: `./${name}.js`, source: `module.exports = require('./${componentPath}');\n`},
         ];
 
@@ -38,7 +38,6 @@ module.exports = function (pathName, dts, options) {
           const declarationFile = {path: `./${name}.d.ts`, source: `export * from './${componentPath}';\n`};
           files.push(declarationFile);
         };
-        console.log(files)
         return files;
       })
 
