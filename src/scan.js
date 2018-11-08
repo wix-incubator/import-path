@@ -11,7 +11,7 @@ const formatToPascalCase = str => {
   return str.split('-').map(subStr => upperCaseFirstChar(subStr)).join('');
 };
 
-module.exports = function (pathName, dts, options) {
+module.exports = function (pathName, dts, options = {}) {
   const componentsPath = path.resolve('dist', pathName);
   options.forcePascalCaseFormat = options.forcePascalCaseFormat || false;
 
