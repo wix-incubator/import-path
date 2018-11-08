@@ -58,6 +58,12 @@ Typescript definitions can also be generated using the `--dts` option:
  import-path --path <desired-path> --dts",
 ```
 
+or, you can choose to  pass as a second boolean argument to the importPath function:
+
+```javasript
+ importPath('src/components', true);,
+```
+
 This will create a `.d.ts` for every generated `.js` file.
 Note that the .d.ts files only support named exports and do not support `export default...` and `exports = ...`.
 
