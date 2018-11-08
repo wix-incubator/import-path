@@ -7,13 +7,13 @@ const upperCaseFirstChar = str => {
 };
 
 // ./Button-Next => ./ButtonNext
-const componentNameFormat = str => {
+const formatToPascalCase = str => {
   return str.split('-').map(subStr => upperCaseFirstChar(subStr)).join('');
 };
 
 module.exports = function (pathName, dts, options) {
   const componentsPath = path.resolve('dist', pathName);
-  const defaultOptions = {componentNameFormat: false};
+  const defaultOptions = {forcePascalCaseFormat: false};
   options = Object.assign({}, defaultOptions, options);
 
   if (fs.existsSync(componentsPath)) {
@@ -28,7 +28,7 @@ module.exports = function (pathName, dts, options) {
 
       .map(([name, absolutePath]) => {
         const componentPath = path.relative('./', absolutePath);
-        name = options.componentNameFormat ? componentNameFormat(name) : name;
+        name = options.forcePascalCaseFormat ? formatToPascalCase(name) : name;
 
         const files = [
           {path: `./${name}.js`, source: `module.exports = require('./${componentPath}');\n`},
