@@ -13,8 +13,7 @@ const formatToPascalCase = str => {
 
 module.exports = function (pathName, dts, options) {
   const componentsPath = path.resolve('dist', pathName);
-  const defaultOptions = {forcePascalCaseFormat: false};
-  options = Object.assign({}, defaultOptions, options);
+  options.forcePascalCaseFormat = options.forcePascalCaseFormat || false;
 
   if (fs.existsSync(componentsPath)) {
     fs
