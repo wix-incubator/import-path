@@ -1,8 +1,20 @@
 const path = require('path');
 const fs = require('fs');
 
-module.exports = function (pathName, dts) {
+// ./button-next => ./Button-next
+const upperCaseFirstChar = str => {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+};
+
+// ./Button-Next => ./ButtonNext
+const formatToPascalCase = str => {
+  return str.split('-').map(subStr => upperCaseFirstChar(subStr)).join('');
+};
+
+module.exports = function (pathName, dts, options) {
   const componentsPath = path.resolve('dist', pathName);
+  const defaultOptions = {forcePascalCaseFormat: false};
+  options = Object.assign({}, defaultOptions, options);
 
   if (fs.existsSync(componentsPath)) {
     fs
@@ -16,6 +28,7 @@ module.exports = function (pathName, dts) {
 
       .map(([name, absolutePath]) => {
         const componentPath = path.relative('./', absolutePath);
+        name = options.forcePascalCaseFormat ? formatToPascalCase(name) : name;
 
         const files = [
           {path: `./${name}.js`, source: `module.exports = require('./${componentPath}');\n`},
@@ -25,7 +38,6 @@ module.exports = function (pathName, dts) {
           const declarationFile = {path: `./${name}.d.ts`, source: `export * from './${componentPath}';\n`};
           files.push(declarationFile);
         }
-
         return files;
       })
 

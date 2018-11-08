@@ -43,10 +43,25 @@ Will allow users to do:
 import {importantFunction} from 'my-package/importantFunction';
 ```
 
+If you wish your require path (entry point) name format to be pascal cased, like seen here :
+
+```javascript
+import {importantFunction} from 'my-package/dist/src/ImportantFunction';
+```
+
+pass to the importPath function, a third aregumes : `{componentNameFormat: true}` (defaulted as false).
+
+
 Typescript definitions can also be generated using the `--dts` option:
 
 ```javasript
  import-path --path <desired-path> --dts",
+```
+
+or, you can choose to  pass as a second boolean argument to the importPath function
+
+```javasript
+ importPath('src/components', true);
 ```
 
 This will create a `.d.ts` for every generated `.js` file.
