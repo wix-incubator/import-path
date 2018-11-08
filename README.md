@@ -43,6 +43,15 @@ Will allow users to do:
 import {importantFunction} from 'my-package/importantFunction';
 ```
 
+If you wish your require path (entry point) name format to be camel cased with a capital letter, like seen here :
+
+```javascript
+import {importantFunction} from 'my-package/dist/src/ImportantFunction';
+```
+
+pass to the importPath function, a third aregumes : `{componentNameFormat: true}` (defaulted as false).
+
+
 Typescript definitions can also be generated using the `--dts` option:
 
 ```javasript
