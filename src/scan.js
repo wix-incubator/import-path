@@ -1,20 +1,20 @@
 const path = require('path');
 const fs = require('fs');
 
-// ./Button-Next => ./ButtonNext
-const componentNameFormat = (str) => {
-  return str.split('-').map(subStr => upperCaseFirstChar(subStr)).join('')
-}
-
 // ./button-next => ./Button-next
-const upperCaseFirstChar = (str) => {
-  return str.charAt(0).toUpperCase() + str.slice(1)
-}
+const upperCaseFirstChar = str => {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+};
+
+// ./Button-Next => ./ButtonNext
+const componentNameFormat = str => {
+  return str.split('-').map(subStr => upperCaseFirstChar(subStr)).join('');
+};
 
 module.exports = function (pathName, dts, options) {
   const componentsPath = path.resolve('dist', pathName);
-  const defaultOptions = {componentNameFormat: false}
-  options = Object.assign({}, defaultOptions, options)
+  const defaultOptions = {componentNameFormat: false};
+  options = Object.assign({}, defaultOptions, options);
 
   if (fs.existsSync(componentsPath)) {
     fs
@@ -28,7 +28,7 @@ module.exports = function (pathName, dts, options) {
 
       .map(([name, absolutePath]) => {
         const componentPath = path.relative('./', absolutePath);
-        name = options.componentNameFormat ? componentNameFormat(name) : name
+        name = options.componentNameFormat ? componentNameFormat(name) : name;
 
         const files = [
           {path: `./${name}.js`, source: `module.exports = require('./${componentPath}');\n`},
@@ -37,7 +37,7 @@ module.exports = function (pathName, dts, options) {
         if (dts) {
           const declarationFile = {path: `./${name}.d.ts`, source: `export * from './${componentPath}';\n`};
           files.push(declarationFile);
-        };
+        }
         return files;
       })
 
