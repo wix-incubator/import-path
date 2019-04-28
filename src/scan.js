@@ -37,7 +37,9 @@ module.exports = function (pathName, dts, options = {}) {
           const declarationFile = {
             path: `./${name}.d.ts`,
             source:
-              `export * from './${componentPath}';\nimport defaultExport from './${componentPath}';\nexport default defaultExport;\n`
+              [`export * from './${componentPath}';`,
+                `import defaultExport from './${componentPath}';`,
+                `export default defaultExport;`].join('\n')
           };
           files.push(declarationFile);
         }
