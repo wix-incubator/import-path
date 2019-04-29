@@ -49,17 +49,15 @@ module.exports = function (pathName, dts, options = {}) {
         ];
 
         if (dts) {
+          const codeLines = [`export * from './${componentPath}';`];
+
           if (hasDtsFile(componentPath) &&
             hasDefaultExport(componentPath)) {
-            files.push({
-              path: `./${name}.d.ts`,
-              source: [`export * from './${componentPath}';`,
-                `import defaultExport from './${componentPath}';`,
-                `export default defaultExport`].join('\n')
-            });
-          } else {
-            files.push({path: `./${name}.d.ts`, source: `export * from './${componentPath}';\n`});
+            codeLines.push(`import defaultExport from './${componentPath}';`);
+            codeLines.push('export default defaultExport;');
           }
+
+          files.push({path: `./${name}.d.ts`, source: codeLines.join('\n') + '\n'});
         }
         return files;
       })
