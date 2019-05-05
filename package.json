@@ -47,7 +47,8 @@
   },
   "dependencies": {
     "@phenomnomnominal/tsquery": "^3.0.0",
-    "babel-runtime": "^6.22.0"
+    "babel-runtime": "^6.22.0",
+    "typescript": "~3.2.4"
   },
   "devDependencies": {
     "babel-plugin-transform-runtime": "^6.22.0",
