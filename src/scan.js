@@ -48,11 +48,10 @@ module.exports = function (pathName, dts, options = {}) {
           {path: `./${name}.js`, source: `module.exports = require('./${componentPath}');\n`},
         ];
 
-        if (dts) {
+        if (dts && hasDtsFile(componentPath)) {
           const codeLines = [`export * from './${componentPath}';`];
 
-          if (hasDtsFile(componentPath) &&
-            hasDefaultExport(componentPath)) {
+          if (hasDefaultExport(componentPath)) {
             codeLines.push(`import defaultExport from './${componentPath}';`);
             codeLines.push('export default defaultExport;');
           }
