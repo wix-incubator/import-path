@@ -1,6 +1,5 @@
 const path = require('path');
 const fs = require('fs');
-const {tsquery} = require('@phenomnomnominal/tsquery');
 
 // ./button-next => ./Button-next
 const upperCaseFirstChar = str => {
@@ -18,13 +17,17 @@ const getDtsFilePath = componentPath =>
 const hasDtsFile = componentPath =>
   fs.existsSync(getDtsFilePath(componentPath));
 
-const hasDefaultExport = componentPath => tsquery(
-  tsquery.ast(fs.readFileSync(
-    getDtsFilePath(componentPath)
-  ).toString()),
-  'DefaultKeyword',
-  {visitAllChildren: true}
-).length > 0;
+const hasDefaultExport = componentPath => {
+  const {tsquery} = require('@phenomnomnominal/tsquery');
+  
+  return tsquery(
+    tsquery.ast(fs.readFileSync(
+      getDtsFilePath(componentPath)
+    ).toString()),
+    'DefaultKeyword',
+    {visitAllChildren: true}
+  ).length > 0;
+};
 
 module.exports = function (pathName, dts, options = {}) {
   const componentsPath = path.resolve('dist', pathName);
