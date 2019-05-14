@@ -19,7 +19,7 @@ const hasDtsFile = componentPath =>
 
 const hasDefaultExport = componentPath => {
   const {tsquery} = require('@phenomnomnominal/tsquery');
-  
+
   return tsquery(
     tsquery.ast(fs.readFileSync(
       getDtsFilePath(componentPath)
