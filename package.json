@@ -1,7 +1,7 @@
 {
   "private": false,
   "name": "import-path",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "This package will allow users to require your package without writing dist/src",
   "author": {
     "name": "Lior Belinsky",
@@ -47,7 +47,8 @@
   },
   "dependencies": {
     "@phenomnomnominal/tsquery": "^3.0.0",
-    "babel-runtime": "^6.22.0"
+    "babel-runtime": "^6.22.0",
+    "commander": "^8.2.0"
   },
   "devDependencies": {
     "babel-plugin-transform-runtime": "^6.22.0",
