@@ -58,7 +58,7 @@
     "eslint-config-wix": "^1.1.0",
     "husky": "^0.13.4",
     "typescript": "~3.2.4",
-    "yoshi": "latest"
+    "yoshi": "4.5.0"
   },
   "peerDependencies": {
     "typescript": "^3.2.4"
