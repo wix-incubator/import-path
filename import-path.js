@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const program = require('commander');
+const {program} = require('commander');
 
 program
   .version('0.0.1')
@@ -8,4 +8,6 @@ program
   .option('--dts', 'Create typescript declaration files')
   .parse(process.argv);
 
-require('./src/scan')(program.path, program.dts);
+const options = program.opts();
+
+require('./src/scan')(options.path, options.dts);
